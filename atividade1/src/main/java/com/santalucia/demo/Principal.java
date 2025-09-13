@@ -1,20 +1,12 @@
 package com.santalucia.demo;
 
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 import java.util.Arrays;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class Principal extends JFrame{
 
@@ -25,24 +17,48 @@ public class Principal extends JFrame{
 
     public Principal(){
         setTitle("Cadastro usuário");
-        setSize(400, 300);
+        setSize(450, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setLayout(new GridLayout(4, 2, 10,10));
-        ((JPanel)getContentPane()).setBorder(BorderFactory.
-            createEmptyBorder(10, 10, 10, 10));
-        add(new JLabel("Nome Completo: "));
-        txtNome = new JTextField();
-        add(txtNome);
-        add(new JLabel("E-mail: "));
-        txtEmail = new JTextField();
-        add(txtEmail);
-        add(new JLabel("Telefone: "));
-        txtTelefone = new JTextField();
-        add(txtTelefone);
+        JPanel painel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(8, 8, 8, 8);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0; 
+        gbc.gridy = 0;
+
+        painel.add(new JLabel("Nome Completo:"), gbc);
+        gbc.gridx = 1;
+        txtNome = new JTextField(20);
+        painel.add(txtNome, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy++;
+        painel.add(new JLabel("E-mail:"), gbc);
+        gbc.gridx = 1;
+        txtEmail = new JTextField(20);
+        painel.add(txtEmail, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy++;
+        painel.add(new JLabel("Telefone:"), gbc);
+        gbc.gridx = 1;
+        txtTelefone = new JTextField(20);
+        painel.add(txtTelefone, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy++;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
         btnCadastrar = new JButton("Cadastrar");
-        add(btnCadastrar);
+        btnCadastrar.setBackground(new Color(0, 120, 215));
+        btnCadastrar.setForeground(Color.WHITE);
+        btnCadastrar.setFont(new Font("Arial", Font.BOLD, 14));
+        btnCadastrar.setFocusPainted(false);
+        painel.add(btnCadastrar, gbc);
+
+        add(painel, BorderLayout.CENTER);
 
         btnCadastrar.addActionListener(new ActionListener() {
             @Override
