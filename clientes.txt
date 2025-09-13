@@ -1,0 +1,10 @@
+Nome: Maria
+Email: maria@email.com
+Telefone: 1111-1111
+----------------------
+
+Nome: Pedro
+Email: pedro@email.com
+Telefone: 2222-2222
+----------------------
+
